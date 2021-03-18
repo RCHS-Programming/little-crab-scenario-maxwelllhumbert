@@ -6,11 +6,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
 public class Crab extends Actor
 {
     public void act()
-    {
-         
-         turnAtEdge();
-        randomTurn();
-        move(20);
+    { 
+       
+        checkKeyPress();
+        move(10);
         lookForWorm();
         
         
@@ -29,27 +28,25 @@ public class Crab extends Actor
         if(isTouching(Worm.class))
         {
             removeTouching(Worm.class);
+            Greenfoot.playSound ("slurp.wav");
         }
     }
     
-   /*
-    * make te crab turn rigt between 0-45 degrees
-    */
-   public void randomTurn()
-   {
-       if(Greenfoot.getRandomNumber(100)<10)
-         {
-             turn(Greenfoot.getRandomNumber(910)-45);
-          }
+    /*
+     * check weather a key is pressed if so turn the crab
+     */
+    public void checkKeyPress()
+    {
+        if (Greenfoot.isKeyDown("left"))
+        {
+            turn (-4);
+        }
+        if (Greenfoot.isKeyDown("right"))
+        {
+            turn(4);
+        }
     }
     
-    public void turnAtEdge()
-    {
-        if(isAtEdge() )
-         {
-             turn(50);
-         }
-    }
 }
 
 
